@@ -8,7 +8,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>Document</title>
 </head>
-<body class="block">
+<body class="block" x-data="{ scrolled: false }" @scroll.window="scrolled = window.scrollY > 50">
     <x-navbar></x-navbar>
 </body>
 </html>

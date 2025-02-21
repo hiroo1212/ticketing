@@ -1,5 +1,6 @@
 <header x-data="{ isOpen: false }" class="fixed top-0 left-0 w-full transition-all duration-300 py-4 z-50">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+  <nav :class="scrolled ? 'bg-black/90 shadow-md' : 'bg-gradient-to-b from-black/60 to-transparent'"
+  class="fixed top-0 left-0 w-full h-16 flex items-center z-50 transition-all duration-300" aria-label="Global">
     <div class="flex lg:flex-1">
       <a href="#" class="-m-1.5 p-1.5 ">
         <span class="sr-only">Your Company</span>
