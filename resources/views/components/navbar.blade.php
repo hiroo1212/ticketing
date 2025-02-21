@@ -1,7 +1,7 @@
-<header x-data="{ isOpen: false }" class="bg-white">
+<header x-data="{ isOpen: false }" class="fixed top-0 left-0 w-full transition-all duration-300 py-4 z-50">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
     <div class="flex lg:flex-1">
-      <a href="#" class="-m-1.5 p-1.5">
+      <a href="#" class="-m-1.5 p-1.5 ">
         <span class="sr-only">Your Company</span>
         <img class="h-8 w-auto" src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="">
       </a>
@@ -14,9 +14,9 @@
         </svg>
       </button>
     </div>
-    <div class="hidden lg:flex lg:gap-x-12">
+    <div class="hidden lg:flex lg:gap-x-12 text-white">
       <div class="relative">
-        <button @click="isOpen = !isOpen" type="button" class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900" aria-expanded="false">
+        <button @click="isOpen = !isOpen" type="button" class="flex items-center gap-x-1 text-sm/6 font-semibold" aria-expanded="false">
           Product
           <svg class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
             <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -131,12 +131,12 @@
         </div>
       </div>
 
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Features</a>
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Marketplace</a>
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
+      <a href="#" class="text-sm/6 font-semibold">Features</a>
+      <a href="#" class="text-sm/6 font-semibold">Marketplace</a>
+      <a href="#" class="text-sm/6 font-semibold">Company</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a href="#" class="text-sm/6 font-semibold text-white">Log in <span aria-hidden="true">&rarr;</span></a>
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
@@ -156,23 +156,29 @@
           </svg>
         </button>
       </div>
-      <div class="mt-6 flow-root">
+      <div x-data="{ Open: false }" class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
             <div class="-mx-3">
-              <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
+              <button @click="Open = !Open" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
                 Product
                 <!--
                   Expand/collapse icon, toggle classes based on menu open state.
 
                   Open: "rotate-180", Closed: ""
                 -->
-                <svg class="size-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                <svg class="size-5 flex-none w-5 h-5 ml-2 transition-transform duration-200" :class="{ 'rotate-180': Open }"  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                   <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                 </svg>
               </button>
               <!-- 'Product' sub-menu, show/hide based on menu state. -->
-              <div class="mt-2 space-y-2" id="disclosure-1">
+              <div x-show="Open" @click.away="Open = false" 
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 -translate-y-4"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition ease-in duration-200"
+              x-transition:leave-start="opacity-100 translate-y-0"
+              x-transition:leave-end="opacity-0 -translate-y-4" class="mt-2 space-y-2" id="disclosure-1">
                 <a href="#" class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Analytics</a>
                 <a href="#" class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Engagement</a>
                 <a href="#" class="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50">Security</a>
